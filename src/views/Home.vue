@@ -5,7 +5,6 @@
         accent-color="primary"
 
         :files="files$.list"
-        @onBack="back()"
         @onOpenDir="openFolder($event)"
         @onDeleteFile="deleteFile($event)"
     />
@@ -18,8 +17,8 @@
 import FSContent from '@/components/fs/FS-content'
 import FSSearch from '@/components/fs/FS-search'
 
-import path from 'path'
 import { mapState } from 'vuex'
+import path from 'path'
 
 export default {
   name: 'Home',
@@ -34,16 +33,12 @@ export default {
   }),
 
   created() {
-    this.$store.dispatch('files/getDefaultFiles')
+    this.$store.dispatch('files/getHomeFiles')
   },
 
   methods: {
     openFolder(dirName) {
       const dirPath = path.resolve(this.files$.path, dirName)
-      this.$store.dispatch('files/openDir', {dirPath})
-    },
-    back() {
-      const dirPath = path.dirname(this.files$.path)
       this.$store.dispatch('files/openDir', {dirPath})
     },
     deleteFile(fileName) {

@@ -2,6 +2,8 @@ import { getFiles } from '@/service/files/getFiles'
 import server from '@/service/server'
 import path from "path"
 
+
+
 const state = () => ({
   all:         [],
   view:        [],
@@ -13,24 +15,26 @@ const getters = {
   searchField: state => state.searchValue
 }
 // actions
+const updateFiles = (commit, files) => {
+  commit('setFiles', files)
+  commit('reset')
+}
+
 const actions = {
-  async getDefaultFiles({commit}) {
+  async getHomeFiles({commit}) {
     const files = await getFiles(server.defaultPath)
-    commit('setFiles', files)
-    commit('reset')
+    updateFiles(commit, files)
   },
 
   async openDir({commit}, {dirPath}) {
     const files = await getFiles(dirPath)
-    commit('setFiles', files)
-    commit('reset')
+    updateFiles(commit, files)
   },
 
   async goBack({commit, state}) {
     const dirPath = path.dirname(state.all.path)
     const files = await getFiles(dirPath)
-    commit('setFiles', files)
-    commit('reset')
+    updateFiles(commit, files)
   },
   // Поиск файлов по названию
   searchByName({commit}, name) {

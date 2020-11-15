@@ -47,9 +47,5 @@ export default {
     maxWidth:    String,
     accentColor: String
   },
-
-  data: () => ({
-    currentPath: ''
-  }),
 }
 </script>

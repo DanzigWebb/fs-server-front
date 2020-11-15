@@ -1,14 +1,30 @@
 <template>
   <v-toolbar>
-    <v-btn icon @click="goBack()">
-      <v-icon>mdi-arrow-left</v-icon>
-    </v-btn>
+
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn icon @click="goBack()" v-bind="attrs" v-on="on">
+          <v-icon>mdi-arrow-left</v-icon>
+        </v-btn>
+      </template>
+      <span>Назад</span>
+    </v-tooltip>
 
     <span>Файлы</span>
 
     <v-spacer />
 
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn icon @click="goHome()" v-bind="attrs" v-on="on">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+      </template>
+      <span>Начальная папка</span>
+    </v-tooltip>
+
     <FSSearch />
+
   </v-toolbar>
 </template>
 
@@ -21,6 +37,9 @@ export default {
   methods: {
     goBack() {
       this.$store.dispatch('files/goBack')
+    },
+    goHome() {
+      this.$store.dispatch('files/getHomeFiles')
     }
   }
 }
