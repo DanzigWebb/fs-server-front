@@ -4,7 +4,7 @@
         max-width="900"
         accent-color="primary"
 
-        :files="files"
+        :files="files$.list"
         @onBack="back()"
         @onOpenDir="openFolder($event)"
         @onDeleteFile="deleteFile($event)"
@@ -15,40 +15,36 @@
 <script>
 
 import FSContent from '@/components/fs/FS-content'
-import { getFiles } from '@/service/files/getFiles'
 import path from 'path'
-import server from '@/service/server'
+import { mapState } from 'vuex'
 
 export default {
-  name:       'Home',
-  components: {FSContent},
+  name: 'Home',
 
-  data: () => ({
-    files: []
+  components: {
+    FSContent
+  },
+
+  computed: mapState({
+    files$: state => state.files.all,
   }),
 
   created() {
-    this.getFiles(server.defaultPath)
+    this.$store.dispatch('files/getDefaultFiles')
   },
 
   methods: {
-    async getFiles(dirPath) {
-      const files = await getFiles(dirPath)
-      this.files = files.list
-      this.currentPath = files.path
+    openFolder(dirName) {
+      const dirPath = path.resolve(this.files$.path, dirName)
+      this.$store.dispatch('files/openDir', {dirPath})
     },
-    async openFolder(dirName) {
-      const newPath = this.currentPath + path.sep + dirName
-      await this.getFiles(newPath)
+    back() {
+      const dirPath = path.dirname(this.files$.path)
+      this.$store.dispatch('files/openDir', {dirPath})
     },
-    async deleteFile(fileName) {
+    deleteFile(fileName) {
       alert(`Удалить файл: ${fileName}?`)
     },
-
-    async back() {
-      const backPath = path.dirname(this.currentPath)
-      await this.getFiles(backPath)
-    }
   }
 }
 </script>
