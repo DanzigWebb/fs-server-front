@@ -4,16 +4,11 @@
       :max-width="maxWidth"
       tile
   >
+    <!-- Toolbar -->
+    <FSToolbar />
 
+    <!-- Files list -->
     <v-list dense>
-
-      <v-subheader>
-        <v-btn icon @click="$emit('onBack')">
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn>
-        <span>Файлы</span>
-      </v-subheader>
-
       <v-list-item-group>
         <FSItem
             v-for="file in files"
@@ -36,9 +31,13 @@
 
 import FSItem from '@/components/fs/FS-item'
 import FSIcon from '@/components/fs/FS-icon'
+import FSSearch from '@/components/fs/FS-search'
+import FSToolbar from '@/components/fs/FS-toolbar'
 
 export default {
   components: {
+    FSToolbar,
+    FSSearch,
     FSIcon,
     FSItem
   },

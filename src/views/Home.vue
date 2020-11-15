@@ -14,7 +14,10 @@
 
 <script>
 
+// Components
 import FSContent from '@/components/fs/FS-content'
+import FSSearch from '@/components/fs/FS-search'
+
 import path from 'path'
 import { mapState } from 'vuex'
 
@@ -22,11 +25,12 @@ export default {
   name: 'Home',
 
   components: {
+    FSSearch,
     FSContent
   },
 
   computed: mapState({
-    files$: state => state.files.all,
+    files$: state => state.files.view,
   }),
 
   created() {
@@ -44,7 +48,7 @@ export default {
     },
     deleteFile(fileName) {
       alert(`Удалить файл: ${fileName}?`)
-    },
+    }
   }
 }
 </script>
