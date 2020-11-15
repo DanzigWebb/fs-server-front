@@ -20,13 +20,13 @@
 
             <!-- Todo перенести в отдельный компнент <FileIcon> -->
             <v-list-item-avatar>
-              <v-icon class="grey lighten-1" dark>
-                mdi-folder
+              <v-icon color="primary" dark>
+                {{file.icon}}
               </v-icon>
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>{{ file.name }} {{file.size / 1000}}kb</v-list-item-title>
+              <v-list-item-title>{{ file.name }}</v-list-item-title>
             </v-list-item-content>
 
             <v-list-item-action>
@@ -46,7 +46,7 @@
 <script>
 // @ is an alias to /src
 
-import { getFiles } from '@/service/getFiles'
+import { getFiles } from '@/service/files/getFiles'
 import path from 'path'
 import server from '@/service/server'
 
