@@ -1,61 +1,30 @@
 <template>
   <v-container>
+    <FSContent
+        max-width="900"
+        accent-color="primary"
 
-    <!-- Todo перенести в отдельный компнент <FileCard> -->
-    <v-card
-        class="mx-auto"
-        max-width="600"
-        tile
-    >
-      <!-- Todo перенести в отдельный компнент <FileItem> -->
-      <v-list dense>
-        <v-subheader>
-          <v-btn icon @click="back()">
-            <v-icon>mdi-arrow-left</v-icon>
-          </v-btn>
-          <span>Файлы</span>
-        </v-subheader>
-        <v-list-item-group>
-          <v-list-item v-for="(file, i) in files" :key="i" @click="openFolder(file.name)">
-
-            <!-- Todo перенести в отдельный компнент <FileIcon> -->
-            <v-list-item-avatar>
-              <v-icon color="primary" dark>
-                {{file.icon}}
-              </v-icon>
-            </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ file.name }}</v-list-item-title>
-            </v-list-item-content>
-
-            <v-list-item-action>
-              <!-- Todo добавить метод удаления onDelete(file.name)-->
-              <v-btn icon>
-                <v-icon color="red">mdi-delete</v-icon>
-              </v-btn>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-
-    </v-card>
+        :files="files"
+        @onBack="back()"
+        @onOpenDir="openFolder($event)"
+        @onDeleteFile="deleteFile($event)"
+    />
   </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
 
+import FSContent from '@/components/fs/FS-content'
 import { getFiles } from '@/service/files/getFiles'
 import path from 'path'
 import server from '@/service/server'
 
 export default {
-  name: 'Home',
+  name:       'Home',
+  components: {FSContent},
 
   data: () => ({
-    files: [],
-    currentPath: ''
+    files: []
   }),
 
   created() {
@@ -72,6 +41,10 @@ export default {
       const newPath = this.currentPath + path.sep + dirName
       await this.getFiles(newPath)
     },
+    async deleteFile(fileName) {
+      alert(`Удалить файл: ${fileName}?`)
+    },
+
     async back() {
       const backPath = path.dirname(this.currentPath)
       await this.getFiles(backPath)

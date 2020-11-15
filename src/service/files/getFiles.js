@@ -1,5 +1,5 @@
 import server from '@/service/server'
-import { FileItem } from '@/service/files/File'
+import { FileItem, FSResponse } from '@/service/files/File'
 
 export const getFiles = async (path) => {
   const body = {
@@ -15,8 +15,5 @@ export const getFiles = async (path) => {
   })
 
   const toJSON = await resp.json()
-  return {
-    ...toJSON,
-    list: toJSON.list.map(item => new FileItem(item))
-  }
+  return new FSResponse(toJSON)
 }

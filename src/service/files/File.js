@@ -18,8 +18,15 @@ export class FileItem {
     this.size = params.size
     this.lastModified = params.lastModified
     this.extname = params.extname
-    this.type = params.type
+    this.type = FileItem.setType(params.type)
     this.icon = FileItem.setIconName(params.type)
+  }
+
+  static setType(type) {
+    if (!type) {
+      return 'folder'
+    }
+    return type
   }
 
   static setIconName(type) {
@@ -28,5 +35,12 @@ export class FileItem {
     }
     const [groupType, fileType] = type.split('/')
     return typeToIconMap[groupType] || typeToIconMap[fileType] || typeToIconMap['folder']
+  }
+}
+
+export class FSResponse {
+  constructor(response) {
+    this.path = response.path
+    this.list = response.list.map(item => new FileItem(item))
   }
 }

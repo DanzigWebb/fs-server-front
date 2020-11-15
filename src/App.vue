@@ -19,7 +19,7 @@
     </v-app-bar>
 
     <v-main>
-      <Home></Home>
+      <router-view />
     </v-main>
   </v-app>
 </template>
