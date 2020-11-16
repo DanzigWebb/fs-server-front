@@ -17,7 +17,7 @@
             :key="file.name + file.lastModified"
 
             @onOpenDir="$emit('onOpenDir', $event)"
-            @onDeleteFile="$emit('onDeleteFile', $event)"
+            @onDeleteFile="snackbar = true"
         >
           <FSIcon :file="file" :color="accentColor" />
         </FSItem>
@@ -29,6 +29,17 @@
         </v-list-item-title>
       </v-list-item>
     </v-list>
+
+    <v-snackbar v-model="snackbar" timeout="3000">
+      <span>Файл удален!</span>
+
+      <template v-slot:action="{ attrs }">
+        <v-btn :color="accentColor" icon v-bind="attrs" @click="snackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+
+    </v-snackbar>
 
   </v-card>
 </template>
@@ -53,5 +64,9 @@ export default {
     maxWidth:    String,
     accentColor: String
   },
+
+  data: () => ({
+    snackbar: false,
+  })
 }
 </script>

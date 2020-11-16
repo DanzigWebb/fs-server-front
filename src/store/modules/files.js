@@ -6,7 +6,7 @@ import path from 'path'
 const state = () => ({
   all:         [],
   view:        [],
-  searchValue: 'fdf',
+  searchValue: '',
 })
 
 // getters

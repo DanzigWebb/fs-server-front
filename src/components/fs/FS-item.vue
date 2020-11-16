@@ -16,9 +16,10 @@
     </v-list-item-content>
 
     <v-list-item-action>
-      <v-btn v-if="!isFolder" icon @click.prevent="onDeleteFile()">
-        <FSDialogDelete :file="file"></FSDialogDelete>
-      </v-btn>
+      <FSDialogDelete
+          :file="file"
+          @onDelete="$emit('onDeleteFile')"
+      />
     </v-list-item-action>
   </v-list-item>
 </template>
@@ -51,9 +52,6 @@ export default {
       if (this.isFolder) {
         this.$emit('onOpenDir', this.file.name)
       }
-    },
-    onDeleteFile() {
-      this.$emit('onDeleteFile', this.file.name)
     },
   }
 }

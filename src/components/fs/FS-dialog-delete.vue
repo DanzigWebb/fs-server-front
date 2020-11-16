@@ -32,7 +32,9 @@ import { deleteFile } from '@/service/files/deleteFile'
 export default {
 
   data: () => ({
-    dialog: false
+    dialog:   false,
+    snackbar: true,
+    timeout:  300000
   }),
 
   props: {
@@ -40,8 +42,7 @@ export default {
   },
 
   computed: mapState({
-    // проксирует в this.count доступ к store.state.count
-    filePath: state => state.files.all.path,
+    filePath: state => state.files.all.path
   }),
 
   methods: {
@@ -49,6 +50,7 @@ export default {
       const pathToFile = path.resolve(this.filePath, this.file.name)
       await deleteFile(pathToFile)
       this.$store.dispatch('files/update')
+      this.$emit('onDelete')
       this.dialog = false
     }
   }
