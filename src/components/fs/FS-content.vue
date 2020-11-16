@@ -8,8 +8,8 @@
     <FSToolbar />
 
     <!-- Files list -->
-    <v-list dense>
-      <v-list-item-group>
+    <v-list dense v-if="files">
+      <v-list-item-group v-if="files.length">
         <FSItem
             v-for="file in files"
             :color="accentColor"
@@ -22,6 +22,12 @@
           <FSIcon :file="file" :color="accentColor" />
         </FSItem>
       </v-list-item-group>
+
+      <v-list-item v-else>
+        <v-list-item-title>
+          Файлов не найдено...
+        </v-list-item-title>
+      </v-list-item>
     </v-list>
 
   </v-card>

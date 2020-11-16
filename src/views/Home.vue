@@ -4,6 +4,7 @@
         max-width="900"
         accent-color="primary"
 
+        v-if="files$"
         :files="files$.list"
         @onOpenDir="openFolder($event)"
         @onDeleteFile="deleteFile($event)"
