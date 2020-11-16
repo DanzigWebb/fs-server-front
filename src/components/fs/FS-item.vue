@@ -17,7 +17,7 @@
 
     <v-list-item-action>
       <v-btn v-if="!isFolder" icon @click.prevent="onDeleteFile()">
-        <v-icon color="red">mdi-delete</v-icon>
+        <FSDialogDelete :file="file"></FSDialogDelete>
       </v-btn>
     </v-list-item-action>
   </v-list-item>
@@ -25,9 +25,11 @@
 
 <script>
 import FSIcon from '@/components/fs/FS-icon'
+import FSDialogDelete from '@/components/fs/FS-dialog-delete'
 
 export default {
   components: {
+    FSDialogDelete,
     FSIcon
   },
 

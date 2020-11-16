@@ -1,7 +1,6 @@
 import { getFiles } from '@/service/files/getFiles'
 import server from '@/service/server'
-import path from "path"
-
+import path from 'path'
 
 
 const state = () => ({
@@ -21,6 +20,7 @@ const updateFiles = (commit, files) => {
 }
 
 const actions = {
+  // Получение файлов
   async getHomeFiles({commit}) {
     const files = await getFiles(server.defaultPath)
     updateFiles(commit, files)
@@ -35,6 +35,11 @@ const actions = {
     const dirPath = path.dirname(state.all.path)
     const files = await getFiles(dirPath)
     updateFiles(commit, files)
+  },
+  // Удаление файла
+  async update({dispatch, state}) {
+    const dirPath = state.all.path
+    return dispatch('openDir', {dirPath})
   },
   // Поиск файлов по названию
   searchByName({commit}, name) {
