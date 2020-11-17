@@ -1,23 +1,6 @@
 <template>
   <v-app>
-    <!--  Todo вынести в компонент <Header>  -->
-    <v-app-bar
-        app
-        color="primary"
-        dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-            alt="Vuetify Logo"
-            class="shrink mr-2"
-            contain
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-            transition="scale-transition"
-            width="40"
-        />
-      </div>
-    </v-app-bar>
-
+    <APPHeader />
     <v-main>
       <router-view />
     </v-main>
@@ -27,11 +10,13 @@
 <script>
 
 import Home from '@/views/Home'
+import APPHeader from '@/components/template/APP-header'
 
 export default {
   name: 'App',
 
   components: {
+    APPHeader,
     Home
   },
 
