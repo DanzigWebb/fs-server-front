@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <FSContent
-        max-width="900"
+        max-width="1100"
         accent-color="primary"
 
         v-if="files$"
@@ -16,7 +16,6 @@
 
 // Components
 import FSContent from '@/components/fs/FS-content'
-import FSSearch from '@/components/fs/FS-search'
 
 import { mapState } from 'vuex'
 import path from 'path'
@@ -25,7 +24,6 @@ export default {
   name: 'Home',
 
   components: {
-    FSSearch,
     FSContent
   },
 

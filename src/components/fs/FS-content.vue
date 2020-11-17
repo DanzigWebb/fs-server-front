@@ -1,9 +1,5 @@
 <template>
-  <v-card
-      class="mx-auto"
-      :max-width="maxWidth"
-      tile
-  >
+  <v-card class="mx-auto" :max-width="maxWidth" tile>
     <!-- Toolbar -->
     <FSToolbar />
 
@@ -23,6 +19,7 @@
         </FSItem>
       </v-list-item-group>
 
+      <!-- Files empty list -->
       <v-list-item v-else>
         <v-list-item-title>
           Файлов не найдено...
@@ -30,15 +27,14 @@
       </v-list-item>
     </v-list>
 
+    <!-- Delete file snackbar -->
     <v-snackbar v-model="snackbar" timeout="3000">
       <span>Файл удален!</span>
-
       <template v-slot:action="{ attrs }">
         <v-btn :color="accentColor" icon v-bind="attrs" @click="snackbar = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </template>
-
     </v-snackbar>
 
   </v-card>
@@ -48,8 +44,8 @@
 
 import FSItem from '@/components/fs/FS-item'
 import FSIcon from '@/components/fs/FS-icon'
-import FSSearch from '@/components/fs/FS-search'
-import FSToolbar from '@/components/fs/FS-toolbar'
+import FSSearch from '@/components/fs/toolbar/FS-search'
+import FSToolbar from '@/components/fs/toolbar/FS-toolbar'
 
 export default {
   components: {

@@ -11,7 +11,8 @@ const state = () => ({
 
 // getters
 const getters = {
-  searchField: state => state.searchValue
+  searchField: state => state.searchValue,
+  dirPath: state => state.all?.path
 }
 // actions
 const updateFiles = (commit, files) => {

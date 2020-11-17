@@ -12,6 +12,8 @@
 
     <span>Файлы</span>
 
+    <FSPath />
+
     <v-spacer />
 
     <v-tooltip bottom>
@@ -29,10 +31,11 @@
 </template>
 
 <script>
-import FSSearch from '@/components/fs/FS-search'
+import FSSearch from '@/components/fs/toolbar/FS-search'
+import FSPath from '@/components/fs/toolbar/FS-path'
 
 export default {
-  components: {FSSearch},
+  components: {FSPath, FSSearch},
 
   methods: {
     goBack() {
