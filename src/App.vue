@@ -4,18 +4,22 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <APPSettings />
   </v-app>
 </template>
 
 <script>
 
 import Home from '@/views/Home'
-import APPHeader from '@/components/template/APP-header'
+import APPHeader from '@/components/template/app-header'
+import APPSettings from '@/components/template/settings/app-settings'
 
 export default {
   name: 'App',
 
   components: {
+    APPSettings,
     APPHeader,
     Home
   },

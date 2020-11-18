@@ -1,7 +1,6 @@
 import { getFiles } from '@/service/files/getFiles'
-import server from '@/service/server'
 import path from 'path'
-
+import { setDefaultDir } from '@/store/shared/default-path'
 
 const state = () => ({
   all:         [],
@@ -23,7 +22,7 @@ const updateFiles = (commit, files) => {
 const actions = {
   // Получение файлов
   async getHomeFiles({commit}) {
-    const files = await getFiles(server.defaultPath)
+    const files = await getFiles(setDefaultDir())
     updateFiles(commit, files)
   },
 

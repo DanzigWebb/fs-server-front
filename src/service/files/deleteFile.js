@@ -1,4 +1,4 @@
-import server from '@/service/server'
+import server from '@/service/config'
 
 export const deleteFile = async (path) => {
   const body = {

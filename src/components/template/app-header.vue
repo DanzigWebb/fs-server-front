@@ -1,9 +1,5 @@
 <template>
-  <v-app-bar
-      app
-      color="primary"
-      dark
-  >
+  <v-app-bar app color="primary" dark>
     <div class="d-flex align-center">
       <v-img
           alt="Vuetify Logo"
@@ -14,5 +10,19 @@
           width="40"
       />
     </div>
+    <v-spacer />
+    <v-btn icon @click="openSettings()">
+      <v-icon>mdi-cog</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
+
+<script>
+export default {
+  methods: {
+    openSettings() {
+      this.$store.commit('settings/open')
+    }
+  }
+}
+</script>

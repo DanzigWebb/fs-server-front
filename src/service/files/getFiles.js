@@ -1,4 +1,4 @@
-import server from '@/service/server'
+import server from '@/service/config'
 import { FSResponse } from '@/service/files/File'
 
 export const getFiles = async (path) => {

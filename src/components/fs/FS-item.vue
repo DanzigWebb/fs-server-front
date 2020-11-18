@@ -17,6 +17,7 @@
 
     <v-list-item-action>
       <FSDialogDelete
+          v-if="!isFolder"
           :file="file"
           @onDelete="$emit('onDeleteFile')"
       />
