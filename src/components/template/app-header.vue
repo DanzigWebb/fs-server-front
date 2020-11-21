@@ -10,6 +10,9 @@
           width="40"
       />
     </div>
+
+    <h2>{{ capitalize(currentDir) }}</h2>
+
     <v-spacer />
     <v-btn icon @click="openSettings()">
       <v-icon>mdi-cog</v-icon>
@@ -18,10 +21,21 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters({
+      currentDir: 'files/currentDir'
+    })
+  },
+
   methods: {
     openSettings() {
       this.$store.commit('settings/open')
+    },
+    capitalize(str) {
+      return str ? str[0].toUpperCase() + str.slice(1) : ''
     }
   }
 }

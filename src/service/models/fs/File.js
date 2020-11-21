@@ -10,6 +10,7 @@ const typeToIconMap = {
   'x-scss':     'mdi-sass',
   'x-sass':     'mdi-sass',
   'folder':     'mdi-folder',
+  'question':   'mdi-file-question',
 }
 
 export class FileItem {
@@ -34,7 +35,7 @@ export class FileItem {
       return typeToIconMap['folder']
     }
     const [groupType, fileType] = type.split('/')
-    return typeToIconMap[groupType] || typeToIconMap[fileType] || typeToIconMap['folder']
+    return typeToIconMap[groupType] || typeToIconMap[fileType] || typeToIconMap['question']
   }
 }
 

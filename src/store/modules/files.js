@@ -11,7 +11,8 @@ const state = () => ({
 // getters
 const getters = {
   searchField: state => state.searchValue,
-  dirPath: state => state.all?.path
+  dirPath:     state => state.all?.path,
+  currentDir:  state => state.all?.path?.split(path.sep).slice(-1)[0]
 }
 // actions
 const updateFiles = (commit, files) => {
